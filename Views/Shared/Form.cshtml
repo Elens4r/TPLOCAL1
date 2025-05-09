@@ -1,0 +1,127 @@
+﻿@model TPLOCAL1.Models.FormModel
+
+<head>
+	<title>Formlaire</title>
+	<link rel="stylesheet" href="~/resources/Index.css" />
+</head>
+
+<body>
+	<header>
+		<img src="~/resources/GroupeHN.png" class="image" alt="GroupeHN" />
+		<h1>Formulaire TP HN avis</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="/Home/Index">Acceuil</a></li>
+			<li><a href="#">Liste d'avis</a></li>
+		</ul>
+	</nav>
+	<section>
+
+		@if (ViewData["Message"] != null)
+		{
+			<div class="alert-form">
+				@ViewData["Message"] <br />
+			</div>
+		}
+
+		<form action="/Home/ValidationFormulaire" method="post">
+			<table>
+				<caption>Informations personelles</caption>
+				<tr>
+					<td>Nom</td>
+					<td>
+						<input type="text" id="LastName" name="LastName" value="@Model?.LastName" />
+						<em>@Html.ValidationMessageFor(Model => Model.LastName)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Prenom</td>
+					<td>
+						<input type="text" id="FirstName" name="FirstName" value="@Model?.FirstName" />
+						<em>@Html.ValidationMessageFor(Model => Model.FirstName)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Genre</td>
+					<td>
+						<select id="UserGender" name="UserGender" value="@Model?.UserGender">
+							<option value="" disabled selected>Sélectionner un sexe</option>
+							<option value="Homme">Homme</option>
+							<option value="Femme">Femme</option>
+							<option value="Autre">Autre</option>
+						</select>
+						<em>@Html.ValidationMessageFor(Model => Model.UserGender)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Adresse</td>
+					<td>
+						<input type="text" id="UserAdress" name="UserAdress" value="@Model?.UserAdress" />
+						<em>@Html.ValidationMessageFor(Model => Model.UserAdress)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Code Postal</td>
+					<td>
+						<input type="text" id="UserZipCode" name="UserZipCode" maxlength="5"
+							value="@Model?.UserZipCode" />
+						<em>@Html.ValidationMessageFor(Model => Model.UserZipCode)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Ville</td>
+					<td>
+						<input type="text" id="UserTown" name="UserTown" value="@Model?.UserTown" />
+						<em>@Html.ValidationMessageFor(Model => Model.UserTown)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Adresse mail</td>
+					<td>
+						<input type="email" id="UserEmail" name="UserEmail" value="@Model?.UserEmail" />
+						<em>@Html.ValidationMessageFor(Model => Model.UserEmail)</em>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<caption>Informations sur la formation</caption>
+				<tr>
+					<td>Date de début de la formation</td>
+					<td>
+						<input type="date" id="StartDate" name="StartDate" />
+						<em>@Html.ValidationMessageFor(Model => Model.StartDate)</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Type de formation</td>
+					<td>
+						<select id="CourseName" name="CourseName">
+							<option value="" disabled selected>Sélectionner une formation</option>
+							<option value="Formation Cobol">Formation Cobol</option>
+							<option value="Formation C#">Formation C#</option>
+							<option value="Formation double compétences">Formation double compétences</option>
+						</select>
+						<em>@Html.ValidationMessageFor(Model => Model.CourseName)</em>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<caption>Avis sur la formation</caption>
+				<tr>
+					<td>Formation Cobol</td>
+					<td>
+						<input type="text" id="OpinionCobol" name="OpinionCobol" />
+					</td>
+				</tr>
+				<tr>
+					<td>Formation C#</td>
+					<td>
+						<input type="text" id="OpinionDotnet" name="OpinionDotnet" />
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="Valider" />
+		</form>
+	</section>
+</body>
